@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Catalog</title>
+</head>
+<body>
+Catalog <br>
+
+{%  for item in towns %}
+    <a href="{% url "city" item.id %}">{{ item.name }}</a> <br>
+{%  endfor  %}
+</body>
+</html>

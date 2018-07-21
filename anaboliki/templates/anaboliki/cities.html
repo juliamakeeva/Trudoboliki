@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>City</title>
+</head>
+<body>
+<h1>{{ town.name }}</h1>
+<ul>
+{% for item in town.item_set.all %}
+    <li>{{ item.name }}</li>
+{% endfor %}
+</ul>
+</body>
+</html>
