@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title> School  </title>
+</head>
+<body>
+
+<H1>Menu</H1>
+<ul>
+    <li><a href="/"> Главная </a></li>
+   <li><a href="/anaboliki/"> Каталог и поиск </a></li>
+    <li><a href="/new_town/new/"> Добавление города </a></li>
+    <li><a href="/new_town/edit/2/"> Редактирование города </a></li>
+    <li><a href="/user/login/"> Форма авторизации пользователя </a></li>
+    <li><a href="/admin/"> Админка проекта </a></li>
+    <li><a href="/admin/anaboliki/city/"> Отображение пользователя и фильтра в админке </a></li>
+
+</ul>
+
+<p> {% if user.is_authenticated %}
+    {{ user }} <a href="{%  url "logout" %}">logout</a>
+    {% else %}
+    <a href="{%  url "login" %}">Login</a>
+{% endif %}</p>
+
+
+
+{%  include "anaboliki/messages.html" %}
+
+{% block "content" %}
+
+{% endblock %}
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

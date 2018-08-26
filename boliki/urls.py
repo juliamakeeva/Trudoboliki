@@ -21,4 +21,6 @@ urlpatterns = [
     path('', main),
     path('anaboliki/', include('anaboliki.urls')),
     path('admin/', admin.site.urls),
+    path('new_town/', include('anaboliki.urls')),
+    path ('user/', include('django.contrib.auth.urls')),
 ]

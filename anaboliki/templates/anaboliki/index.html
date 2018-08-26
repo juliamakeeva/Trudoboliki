@@ -1,7 +1,10 @@
-{% load static %}
+{% extends "anaboliki/base.html" %}
+
+{% block "content" %}
+
+    {% load static %}
 
 <img src="{% static 'anaboliki/happy_people.jpg'%}" />
-
 
 <h1>Спортивный портал {%  include "anaboliki/name.html" %}</h1>
 
@@ -27,3 +30,6 @@
     <li>Курс парусного спорта</li>
     <li>Курс дайвинга</li>
     <li>Водяные спорты (водные лыжи, бананы, парашют, джет ски, водяные трубки)</li></p>
+
+{% endblock %}
+
