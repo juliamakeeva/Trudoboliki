@@ -7,4 +7,5 @@ urlpatterns = [
     path('<int:town>/', city, name='city'),
     path('new/', new_town),
     path('edit/<int:town>/', edit_town),
+
 ]

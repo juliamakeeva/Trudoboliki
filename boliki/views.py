@@ -1,20 +1,14 @@
 from django.contrib.auth.forms import AuthenticationForm
+from django.views.generic.edit import FormView
+from django.contrib.auth.forms import UserCreationForm
 
 
 def auth(request):
     if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
         form = AuthenticationForm(request.POST)
-        # check whether it's valid:
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-        raise ValueError('eeeeee')
+            raise ValueError('eeeeee')
 
-
-
-        # if a GET (or any other method) we'll create a blank form
     else:
         form = AuthenticationForm()
     return render(request, 'auth.html',
@@ -22,3 +16,35 @@ def auth(request):
                         'form': form
 
                 })
+
+
+class RegisterFormView(FormView):
+    form_class = UserCreationForm
+
+    success_url = "/login/"
+
+    template_name = "register.html"
+
+    def form_valid(self, form):
+        form.save()
+
+        return super(RegisterFormView, self).form_valid(form)
+
+#def register(request):
+    #if request.method == 'POST':
+       # form = RegistrationForm(request.POST)
+       # if form.is_valid():
+
+        #    form.save()
+        #    username = form.cleaned_data.get('username')
+        #    raw_password = form.cleaned_data.get('password1')
+        #    user = authenticate(username=username, password=raw_password)
+        #    login(request, user)
+        #    messages.success(request, 'Вы успешно зарегистрировались')
+        #    return redirect('/')
+    #else:
+     #   form = RegistrationForm()
+    #return render(request, 'anaboliki/register.html',
+     #             {
+      #                  'form': form,
+      #          })

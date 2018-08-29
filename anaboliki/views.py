@@ -1,15 +1,15 @@
 from django.shortcuts import render
 from .models import City, Item
 from .forms import NameForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.contrib import messages
 
 
 def main(request):
-    return render(request, 'anaboliki/index.html',)
+    return render(request, 'anaboliki/index.html', )
+
 
 def catalog(request):
-
     towns = City.objects.filter(is_approved=True).order_by('name')
 
     if 'search' in request.GET:
@@ -37,7 +37,7 @@ def new_town(request):
             # redirect to a new URL:
 
             new_city = City(
-                name = form.cleaned_data['name']
+                name=form.cleaned_data['name']
             )
             new_city.save()
             new_city.user = request.user
@@ -53,14 +53,19 @@ def new_town(request):
     else:
         form = NameForm()
     return render(request, 'anaboliki/new_town.html',
-                 {
-                        'form': form
+                  {
+                      'form': form
 
-                })
+                  })
 
 
 def edit_town(request, town):
+    if not City.objects.filter(id=town).exists():
+        return HttpResponseNotFound()
+
     city = City.objects.get(id=town)
+    if request.user != city.user:
+        return HttpResponseNotFound()
 
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -81,8 +86,9 @@ def edit_town(request, town):
     else:
         form = NameForm(instance=city)
     return render(request, 'anaboliki/new_town.html',
-                 {
-                        'form': form
+                  {
+                      'form': form
 
-                })
+                  })
+
 

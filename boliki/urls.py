@@ -16,11 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from anaboliki.views import main
+from boliki.views import RegisterFormView
+#from django.conf.urls import patterns, include, url
 
 urlpatterns = [
     path('', main),
     path('anaboliki/', include('anaboliki.urls')),
     path('admin/', admin.site.urls),
     path('new_town/', include('anaboliki.urls')),
-    path ('user/', include('django.contrib.auth.urls')),
+    path('user/', include('django.contrib.auth.urls')),
+    path('register/', RegisterFormView.as_view()),
 ]
+
+#urlpatterns = patterns('',
+                       #url('register/', RegisterFormView.as_view()),
+                       #)
