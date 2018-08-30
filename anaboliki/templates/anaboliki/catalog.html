@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <title>Catalog</title>
 </head>
-<body>
+<table>
 <br>
 <form role='search'>
 
@@ -23,8 +23,14 @@ Catalog <br>
 
 
 {%  for item in towns %}
-    <a href="{% url "city" item.id %}">{{ item.name }}</a> <br>
+    <a href="{% url "city" item.id %}"> {{ item.name }} </a> &nbsp
+
+    {% if request.user == item.user %}
+        <a href="/new_town/edit/{{ item.id }}/"> Edit </a>
+    {% endif %}<br>
+
 {%  endfor  %}
+
 </body>
 </html>
 {% endblock %}

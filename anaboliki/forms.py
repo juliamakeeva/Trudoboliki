@@ -8,10 +8,4 @@ class NameForm(forms.ModelForm):
         fields = ['name']
 
 
-#class RegistrationForm(forms.ModelForm):
-  #  email = forms.EmailField(max_length=254, required=True)
 
-  #  class Meta:
-
-   #     model = User
-     #   fields = ('username', 'email', 'password1', 'password2',)
